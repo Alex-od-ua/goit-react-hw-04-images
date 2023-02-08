@@ -3,38 +3,21 @@ import PropTypes from 'prop-types';
 
 import { FcSearch } from 'react-icons/fc';
 
-import { initialState } from './initialState';
 import css from './SearchBar.module.css';
 
 export const Searchbar = ({ onSubmit }) => {
-  const [state, setState] = useState({ ...initialState });
+  const [search, setSearch] = useState('');
 
   const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setState(prevState => {
-      return { ...prevState, [name]: value };
-    });
+    const { value } = target;
+    setSearch(value);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit({ ...state });
-    setState({ ...initialState });
-    // const { onSubmit } = this.props;
-
-    // onSubmit({ ...this.state });
-    // this.reset();
+    onSubmit(search);
   };
-
-  // reset() {
-  //   this.setState({
-  //     search: '',
-  //   });
-  // }
-
-  const { search } = state;
-  // const { handleChange, handleSubmit } = this;
 
   return (
     <header className={css.Searchbar}>

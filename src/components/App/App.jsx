@@ -44,8 +44,12 @@ export function App() {
     fetchPictures();
   }, [search, page]);
 
-  const searchPictures = ({ search }) => {
-    setSearch(search);
+  const searchPictures = query => {
+    if (query === search) {
+      toast.warn('This is the same query!');
+      return;
+    }
+    setSearch(query);
     setPictures([]);
     setPage(1);
   };

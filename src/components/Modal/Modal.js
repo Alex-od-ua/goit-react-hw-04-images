@@ -7,17 +7,17 @@ import css from './Modal.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ closeModal, currentImage: { alt, src } }) => {
+  useEffect(() => {
+    document.addEventListener('keydown', onCloseModal);
+
+    return () => document.removeEventListener('keydown', onCloseModal);
+  }, []);
+
   const onCloseModal = ({ target, currentTarget, code }) => {
     if (target === currentTarget || code === 'Escape') {
       closeModal();
     }
   };
-
-  useEffect(() => {
-    document.addEventListener('keydown', closeModal);
-
-    return () => document.removeEventListener('keydown', closeModal);
-  }, [closeModal]);
 
   return createPortal(
     <div className={css.overlay} onClick={onCloseModal}>
