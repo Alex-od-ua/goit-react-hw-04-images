@@ -11,7 +11,7 @@ export const Modal = ({ closeModal, currentImage: { alt, src } }) => {
     document.addEventListener('keydown', onCloseModal);
 
     return () => document.removeEventListener('keydown', onCloseModal);
-  }, []);
+  });
 
   const onCloseModal = ({ target, currentTarget, code }) => {
     if (target === currentTarget || code === 'Escape') {
